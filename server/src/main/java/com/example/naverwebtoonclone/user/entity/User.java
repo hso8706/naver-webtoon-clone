@@ -3,6 +3,7 @@ package com.example.naverwebtoonclone.user.entity;
 import com.example.naverwebtoonclone.advertisement.entity.Ad;
 import com.example.naverwebtoonclone.utils.audit.Auditable;
 import com.example.naverwebtoonclone.web_info.entity.WebInfo;
+import com.example.naverwebtoonclone.utils.audit.Auditable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;

@@ -34,5 +34,4 @@ public class Ad extends Auditable {
 
     @Column
     private String links;
-
 }
