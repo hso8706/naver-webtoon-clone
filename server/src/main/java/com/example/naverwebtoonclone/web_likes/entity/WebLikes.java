@@ -1,8 +1,7 @@
-package com.example.naverwebtoonclone.advertisement.entity;
+package com.example.naverwebtoonclone.web_likes.entity;
 
 import com.example.naverwebtoonclone.user.entity.User;
-import com.example.naverwebtoonclone.utils.audit.Auditable;
-import jakarta.persistence.Column;
+import com.example.naverwebtoonclone.web_info.entity.WebInfo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Ad extends Auditable {
+public class WebLikes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +26,9 @@ public class Ad extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User etpId;
+    private User userId;
 
-    @Column
-    private String contents;
-
-    @Column
-    private String links;
-
+    @ManyToOne
+    @JoinColumn(name = "web_info_id")
+    private WebInfo webInfoId;
 }

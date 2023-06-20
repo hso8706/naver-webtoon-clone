@@ -1,7 +1,7 @@
-package com.example.naverwebtoonclone.advertisement.entity;
+package com.example.naverwebtoonclone.web_eps.entity;
 
-import com.example.naverwebtoonclone.user.entity.User;
-import com.example.naverwebtoonclone.utils.audit.Auditable;
+import com.example.naverwebtoonclone.web_info.entity.WebInfo;
+import com.example.naverwebtoonclone.web_views.entity.WebViews;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,20 +20,30 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Ad extends Auditable {
+public class WebEps {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User etpId;
+    @JoinColumn(name = "web_info_id")
+    private WebInfo webInfoId;
+
+    @OneToOne(mappedBy = "webEpsId")
+    private WebViews webViewsId;
 
     @Column
-    private String contents;
+    private String title;
 
     @Column
-    private String links;
+    private String content;
+
+    @Column
+    private double star;
+
+    @Column
+    private Long starCnt;
+
 
 }
