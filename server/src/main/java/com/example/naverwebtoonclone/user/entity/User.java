@@ -1,5 +1,8 @@
 package com.example.naverwebtoonclone.user.entity;
 
+import com.example.naverwebtoonclone.advertisement.entity.Ad;
+import com.example.naverwebtoonclone.utils.audit.Auditable;
+import com.example.naverwebtoonclone.web_info.entity.WebInfo;
 import com.example.naverwebtoonclone.utils.audit.Auditable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -10,6 +13,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -28,8 +34,14 @@ public class User extends Auditable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToMany(mappedBy = "etpId")
+    private List<Ad> ads = new ArrayList<>();
+
+    @OneToMany(mappedBy = "authorId")
+    private List<WebInfo> webInfos = new ArrayList<>();
+
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles = new ArrayList<>();
+    private List<String> userRoles = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Column
