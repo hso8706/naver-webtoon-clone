@@ -30,7 +30,7 @@ public class Ad extends Auditable {
     private User etpId;
 
     @Column
-    private String contents;
+    private String content;
 
     @Column
     private String links;

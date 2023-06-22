@@ -11,7 +11,7 @@ public class AdDto {
     @Getter
     public static class Post{
 
-        private String contents;
+        private String content;
         private String links;
 
     }
@@ -22,7 +22,7 @@ public class AdDto {
 
         private Long id;
         private User etpId;
-        private String contents;
+        private String content;
         private String links;
 
     }
@@ -32,7 +32,7 @@ public class AdDto {
     public static class Response{
 
         private Long id;
-        private String contents;
+        private String content;
         private String links;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
