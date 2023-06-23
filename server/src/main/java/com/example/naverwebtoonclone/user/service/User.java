@@ -1,5 +1,5 @@
 package com.example.naverwebtoonclone.user.service;
 
-public class UserService {
+public class User {
 
 }
