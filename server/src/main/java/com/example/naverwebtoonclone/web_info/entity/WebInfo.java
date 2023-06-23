@@ -22,32 +22,46 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 public class WebInfo extends Auditable {
+
+    //PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //FK
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User authorId;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User adminId;
+
+    //Fields
     @Column
     private String name;
-
-    @Enumerated(value = EnumType.STRING)
-    @Column
-    private WebStatus webStatus;
-
-    @Column
-    private boolean update;
-
-    @Column
-    private int avgStar;
 
     @Column
     private String thumbnail;
 
     @Column
     private String details;
+
+    @Column
+    private String update;
+
+    @Column
+    private double avgStar = 0;
+
+    @Column
+    private int likeCnt = 0;
+
+    @Column
+    private int viewCnt = 0;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column
+    private WebStatus webStatus = WebStatus.Web_ACTIVE;
 
     @Enumerated(value = EnumType.STRING)
     @Column
@@ -60,12 +74,6 @@ public class WebInfo extends Auditable {
     @Enumerated(value = EnumType.STRING)
     @Column
     private Dow dow;
-
-    @Column
-    private int likeCnt;
-
-    @Column
-    private int viewCnt;
 
 
     public enum WebStatus {
@@ -83,41 +91,58 @@ public class WebInfo extends Auditable {
 
     //TODO code류 정보
     public enum AgeLimitCode {
-        Web_ACTIVE("연재"),
-        Web_SLEEP("휴재"),
-        Web_QUIT("완결");
+        ALL_AGE("전체 이용가"),
+        TWELVE("12세 이용가"),
+        FIFTEEN("15세 이용가"),
+        NINETEEN("19세 이용가");
 
         @Getter
-        private String status;
+        private String age;
 
-        AgeLimitCode(String status) {
-            this.status = status;
+        AgeLimitCode(String age) {
+            this.age = age;
         }
     }
     //TODO code류 정보
     public enum CategoryCode {
-        Web_ACTIVE("연재"),
-        Web_SLEEP("휴재"),
-        Web_QUIT("완결");
+        //판타지, 액션, 로맨스, 학원, 드라마, 공포, 코미디
+        MALE_PREFERENCE("남성 선호"),
+        FEMALE_PREFERENCE("여성 선호"),
+        ALL_AGE_PREFERENCE("모든 연령 선호"),
+        TWELVE_PREFERENCE("12세 이상 선호"),
+        FIFTEEN_PREFERENCE("15세 이상 선호"),
+        NINETEEN_PREFERENCE("19세 이상 선호"),
+        FANTASY("판타지"),
+        ACTION("액션"),
+        ROMANCE("로맨스"),
+        SCHOOL_LIFE("학원"),
+        DRAMA("드라마"),
+        HORROR("공포"),
+        COMEDY("코미디");
 
         @Getter
-        private String status;
+        private String category;
 
-        CategoryCode(String status) {
-            this.status = status;
+        CategoryCode(String category) {
+            this.category = category;
         }
     }
 
+    //TODO 요일 카테고리
     public enum Dow {
-        Web_ACTIVE("연재"),
-        Web_SLEEP("휴재"),
-        Web_QUIT("완결");
+        SUNDAY("일요일"),
+        MONDAY("월요일"),
+        TUESDAY("화요일"),
+        WEDNESDAY("수요일"),
+        THURSDAY("목요일"),
+        FRIDAY("금요일"),
+        SATURDAY("토요일");
 
         @Getter
-        private String status;
+        private String dow;
 
-        Dow(String status) {
-            this.status = status;
+        Dow(String dow) {
+            this.dow = dow;
         }
     }
 }
