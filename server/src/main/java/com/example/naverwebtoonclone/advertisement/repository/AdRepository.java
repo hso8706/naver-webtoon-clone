@@ -1,5 +1,8 @@
 package com.example.naverwebtoonclone.advertisement.repository;
 
-public interface AdRepository {
+import com.example.naverwebtoonclone.advertisement.entity.Ad;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AdRepository extends JpaRepository<Ad, Long> {
 
 }
