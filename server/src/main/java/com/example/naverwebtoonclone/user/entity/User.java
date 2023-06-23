@@ -30,22 +30,25 @@ import lombok.Setter;
 @Entity
 public class User extends Auditable{
 
+    // PK
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // FK
     @OneToMany(mappedBy = "etpId")
     private List<Ad> ads = new ArrayList<>();
 
     @OneToMany(mappedBy = "authorId")
     private List<WebInfo> webInfos = new ArrayList<>();
 
+    // Fields
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> userRoles = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Column
-    private UserStatus userStatus;
+    private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
 
     public enum UserStatus {
